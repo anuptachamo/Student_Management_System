@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.student-card {
+    background-color: #3498d6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #007BFF;
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.student-card:hover {
+    background-color: rgb(56, 54, 54);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+dl {
+    margin: 0;
+    padding: 0;
+}
+
+pre {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 10px;
+    display: inline-block; /* Display DT elements inline */
+    width: 30%;
+}
+
+dd {
+    color: #ffffff;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    width: 65%; /* Adjust width for alignment */
+}
+
+.btn {
+    display: inline-block;
+    background-color:#007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 0; 
+    margin-left: 630px; 
+    border: 2px solid #fff; /* Add white border */
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+

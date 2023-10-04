@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <!-- Include CSS stylesheets for styling -->
+    <link rel="stylesheet" href="/style/register.css">
+</head>
+<body>
+    <div class="container">
+        <h2>CREATE AN ACCOUNT</h2>
+        <!-- Create a form for user registration with a POST request to "/createUser" endpoint -->
+        <form action="/createUser" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your valid username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your valid email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Set strong password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword"> Confirm password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="confirm password" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+</body>
+</html>
+
