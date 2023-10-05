@@ -1,6 +1,6 @@
 const express = require ('express'); //require a express
 const app = express(); //calling a express
-
+const cookieParser = require ('cookie-parser')
 //requiring dotenv and initializing it with default configuration
 require('dotenv').config()
 
@@ -17,6 +17,8 @@ app.set("view engine", "ejs");
 //public vitra ko folder access garna payo aba 
 app.use(express.static("./public")); 
 
+
+app.use(cookieParser())
 //parsing FormData (form bata aako data laii parse gareko)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

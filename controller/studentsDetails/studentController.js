@@ -15,6 +15,10 @@ exports.renderAddStudentsDetails = (req, res) => {
 
 //*addStudents(post)
 exports.AddStudentsDetails = async(req, res) =>{ 
+
+    // console.log(req.requestingUser[0].id, "USerId from AddStudentsDetails")
+    const userId = req.requestingUser[0].id
+
     //database ma data pathauxa
     await students_details.create({
       fullname : req.body.fullname,  // first fullname vaneko column fullname ho, second fullname vaneko form bata aako value 
@@ -23,6 +27,7 @@ exports.AddStudentsDetails = async(req, res) =>{
       rollno : req.body.rollno,
       age : req.body.age,
       contactno : req.body.contactno,
+      userId : userId
     })
 
     res.redirect('/allDetails');

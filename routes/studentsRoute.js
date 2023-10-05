@@ -8,6 +8,7 @@ const {
     renderHomePage,
     UpdateStudentsDetails 
 } = require("../controller/studentsDetails/studentController");
+const { isAuthenticated } = require("../middleware/isAuthenticated");
 
 
 //Create an Express Router instance.
@@ -19,7 +20,7 @@ router.route("/home").get(renderHomePage)
 //*POST method(http verbs)
 // addStudent vanne addStudentsDetails.ejs file ko FORM ko ACTION ma hunxa jahile, anii  METHOD jahile POST hunu parxa*/
 router.route("/addStudentsDetails").get(renderAddStudentsDetails)
-router.route("/addStudent").post(AddStudentsDetails)
+router.route("/addStudent").post(isAuthenticated, AddStudentsDetails)
 
 //* All details page
 router.route("/allDetails").get(renderAllDetails)

@@ -43,6 +43,7 @@ Open vscode
         
         g. npm install jsonwebtoken
         h. npm install dotenv
+        i. npm install cookie-parser (help to read a cookie )
 ```
 
 ## All Features
@@ -63,6 +64,9 @@ Open vscode
         - As well as refreshing it in code and phpmyadmin
 
 ```
+
+## 🚀 how to clear git cached
+    - git rem -r --cached node_modules(foldername)
 
 ## 🚀 About Me
 I'm a frontend developer and just a beginner at Node js...
