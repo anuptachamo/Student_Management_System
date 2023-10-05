@@ -34,9 +34,9 @@ db.students_details = require("./studentModel.js")(sequelize, DataTypes);
 db.users = require("./userModel.js")(sequelize, DataTypes);
 
 
-//relationship
-db.users.hasMany(db.students_details)
-db.students_details.belongsTo(db.users)
+//relationships(yesle garda students_details table ma userId ko column add hunxa)
+db.users.hasMany(db.students_details)  //user is a primary key
+db.students_details.belongsTo(db.users) //students_details is foreign key
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done");

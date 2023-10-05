@@ -1,5 +1,6 @@
 /*users is an table name which are on database [studentRecordsCms] (index.js ko line no. 34)*/
-const { users } = require("../../model");
+const jwt = require("jsonwebtoken");
+const { users } = require("../../Model");
 const bcrypt = require("bcryptjs"); //password hashing lagii use garxa
 
 
@@ -57,7 +58,23 @@ exports.LoginPage =  async (req, res) => {
   
       // if yes(xa) vaney ,password check garnu paryo
       const isPasswordCorrect = bcrypt.compareSync(password, databasePassword);
-  
+      
+      //Generated TOKEN here
+      /*  jwt line no.2 ma define gareko xa   
+          {id:userFound[0].id}  => yo code le database ma kun id bata login gareko xa vanera dekhauxa, userFound line no. 46 am define vako xa
+          process.env.SECRETKEY => yo code le .env file ko SECRETKEY vanne object laii define gareko ho
+      */
+      const token =jwt.sign({id:userFound[0].id}, process.env.SECRETKEY,{ 
+        expiresIn : "30d"
+      })
+      res.cookie("token",token
+      // ,{
+      //   secure : true,
+      //   expires : "120"
+      // }
+      )  //browser ma application tab vitra cookie vanney ma save hunchha
+      console.log("This is Token \n" + token)
+
       if (isPasswordCorrect) {
         // match vayo(yes),login successfully
         res.render("home");

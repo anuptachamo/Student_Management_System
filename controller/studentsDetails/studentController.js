@@ -1,6 +1,6 @@
 /*students_details is an table name which are on database [studentRecordsCms] 
 (index.js ko line no. 33)*/
-const { students_details} = require("../../model/index");
+const { students_details} = require("../../Model/index");
 
 
 //* home(get)

@@ -1,7 +1,10 @@
 const express = require ('express'); //require a express
 const app = express(); //calling a express
 
-require("./model/index");
+//requiring dotenv and initializing it with default configuration
+require('dotenv').config()
+
+require("./Model/index");
 
 //* Routes
 const allStudentsRoute = require("./routes/studentsRoute")
