@@ -38,6 +38,18 @@
             <pre>Contact                          :</pre>
             <!-- Display the student's contactno -->
             <dd> <%- allSingleDetails[0].contactno %></dd>
+
+            <pre>Author                          :</pre>
+            <!-- Display the student's contactno -->
+            <dd> <%- allSingleDetails[0].user.username %></dd>
+
+            <pre>Email                          :</pre>
+            <!-- Display the student's contactno -->
+            <dd> <%- allSingleDetails[0].user.email %></dd>
+
+            <pre>Published On                :</pre>
+            <!-- Display the student's contactno -->
+            <dd> <%- allSingleDetails[0].createdAt.toISOString().slice(0,10) %></dd>
             <div class="button-container">
                 <!-- Create an "Update" button with a link to update the student's details -->
                 <a href="/update/<%- allSingleDetails[0].id %>" class="update-button">Update</a>

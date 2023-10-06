@@ -10,7 +10,7 @@ footer {
 }
 
 footer:hover{
-    background-color: #151617;
+    background-color: #0e5fb0;
 }
 
 p{
@@ -22,6 +22,7 @@ p{
     margin-top: 20px;
     text-align: center;
     font-size: 10px;
+    margin-bottom: 10px;
 }
 
 /* Style individual social media icons */

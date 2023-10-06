@@ -1,6 +1,6 @@
 /*students_details is an table name which are on database [studentRecordsCms] 
 (index.js ko line no. 33)*/
-const { students_details} = require("../../Model/index");
+const { students_details, users} = require("../../Model/index");
 
 
 //* home(get)
@@ -43,6 +43,9 @@ exports.renderSingleStudentDetails = async (req, res) => {
     where: {
       id,
     },
+    include : {
+      model : users
+    }
   });
 
   res.render("sDetails", { allSingleDetails });
@@ -80,7 +83,11 @@ exports.UpdateStudentsDetails = async (req, res) => {
 //* AllDetails(get)
 exports.renderAllDetails =   async (req, res) => {
     // res.render('home');
-    const allSingleDetails = await students_details.findAll();
+    const allSingleDetails = await students_details.findAll({
+      include : {
+        model : users //users vanne table ma join gardeu vaneko ho
+      }
+    });
     res.render("allDetails", { students_details: allSingleDetails });
   } 
 

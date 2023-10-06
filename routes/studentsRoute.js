@@ -22,7 +22,7 @@ router.route("/home").get(renderHomePage)
 router.route("/addStudentsDetails").get(renderAddStudentsDetails)
 router.route("/addStudent").post(isAuthenticated, AddStudentsDetails)
 
-//* All details page
+//* All page details 
 router.route("/allDetails").get(renderAllDetails)
 
 //*single
@@ -32,10 +32,10 @@ router.route("/single/:id").get(renderSingleStudentDetails)
 // /*Updating Students details [POST]
 // updatestudent is define in updateStudentsDetails.ejs file line no. 15*/
 router.route("/update/:id").get(renderUpdateStudentsDetails)
-router.route("/updateStudent/:id").post(UpdateStudentsDetails)
+router.route("/updateStudent/:id").post(isAuthenticated, UpdateStudentsDetails)
 
 //*delete
-router.route("/delete/:id").get(renderDeleteStudentsDetails)
+router.route("/delete/:id").get(isAuthenticated, renderDeleteStudentsDetails)
 
 
 module.exports = router;

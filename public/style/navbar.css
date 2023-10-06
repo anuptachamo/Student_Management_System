@@ -11,7 +11,7 @@ body {
 .navbar {
     background-color: #1877f2;
     color: white;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,7 +22,7 @@ body {
   }
 
   .navbar:hover {
-    background-color: #151617;
+    background-color: #0e5fb0;
   }
 
   .navbar-logo {
@@ -34,15 +34,24 @@ body {
     align-items: center;
   }
 
+  .logotxt{
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.5px #ffffff;
+    animation: color-change 4s infinite;
+    font-size: 30px;
+
+  }
+
+
   .navbar-logo:hover{
-    color: rgb(22, 103, 214);/* Change the color on hover */
+    color: rgb(255, 255, 255);/* Change the color on hover */
     transform: scale(1.05); /* Slightly scale the logo on hover */
     
   }
 
   .navbar-logo img {
-    width: 32px;
-    height: 32px;
+    width: 50px;
+    height: 35px;
     margin-right: 10px;
     border-radius: 50%;
   }

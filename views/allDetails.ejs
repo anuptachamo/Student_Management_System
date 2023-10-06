@@ -42,6 +42,14 @@
                     <pre>Contact                                 :</pre>
                     <!-- Output the student's contactno -->
                     <dd><%- allStudentsDetails.contactno %></dd>
+
+                    <pre>Author                                 :</pre>
+                    <dd><%- allStudentsDetails.user.username %></dd>
+
+                    <pre>Email                                 :</pre>
+                    <dd><%- allStudentsDetails.user.email %></dd>
+
+                
                 </dl>
                 <!-- Create a link to view more details about the student -->
                 <a class="btn" href="/single/<%- allStudentsDetails.id %>">See More</a>

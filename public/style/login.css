@@ -22,7 +22,7 @@ body {
 
   .container:hover {
     color: #fff;
-    background-color: rgb(56, 54, 54);
+    background-color: #0e5fb0;
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -73,7 +73,7 @@ body {
   }
 
   button:hover {
-    background-color: #0056b3;
+    background-color: #000000;
     color: #fff;
   }
 
@@ -90,6 +90,6 @@ body {
   }
 
   .signup-link a:hover{
-    color: #368eeb;
+    color: #000000;
   }
   /* Login page end */
