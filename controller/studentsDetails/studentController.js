@@ -99,3 +99,9 @@ exports.renderDeleteStudentsDetails = async (req, res) => {
   await students_details.destroy({ where: { id } });
   res.redirect("/allDetails");
 }
+
+
+//*contactUs(get)
+exports.rendercontactUs = (req, res) => {
+  res.render('contactUs');
+}

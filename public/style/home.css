@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../background.jpg'); /* Replace 'background.jpg' with your image file path */
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(4,9,30,0.7)),url(../background.jpg);
+
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -66,12 +67,11 @@ body {
     text-align: center;
     margin: 10px;
     padding: 10px;
-    -webkit-text-stroke: 1.5px #000000;
 }
 
 @keyframes color-change {
     0% { color: #fff; }
-    50% { color: #1877f2; }
+    50% { color: #93bbef; }
     100% { color: #fff; }
 }
 .main_p{

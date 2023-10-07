@@ -1,10 +1,5 @@
 /* Footer */
 footer {
-    /* background-color: #007BFF;
-    color: #fff;
-    text-align: center;
-    padding: 10px; */
-
     background-color: #1877f2;
     color: white;
 }
@@ -17,37 +12,36 @@ p{
     text-align: center;
 }
 
-/* Style the social icons container */
 .social-icons {
     margin-top: 20px;
     text-align: center;
     font-size: 10px;
     margin-bottom: 10px;
+
 }
 
-/* Style individual social media icons */
+
 .social-icons a {
-    margin-right: 10px; /* Add some spacing between icons */
-    color: #cdc5c5; /* Icon color */
-    text-decoration: none; /* Remove underlines from links */
-    font-size: 24px; /* Adjust the icon size as needed */
+    margin-right: 10px; 
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 24px; 
 }
 
-/* Hover effect for icons */
+
 .fb:hover {
-    color: #4287e1; /* Change color on hover */
+    color: #589bf3; 
 }
-
 .insta:hover{
-    color: rgb(230, 86, 91);
+    color: rgb(238, 42, 49);
 }
 
 .twitter:hover{
-    color: rgb(39, 131, 201);
+    color: rgb(76, 167, 236);
 }
 
 .git:hover{
-    color: #6b6565;
+    color: #a09b9b;
 }
 
 .yt:hover{
@@ -58,6 +52,7 @@ p{
 .stack:hover{
     color: orange;
 }
+
 
 
 
