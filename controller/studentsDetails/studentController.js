@@ -105,3 +105,16 @@ exports.renderDeleteStudentsDetails = async (req, res) => {
 exports.rendercontactUs = (req, res) => {
   res.render('contactUs');
 }
+
+//*myDetails(get)
+exports.rendermyDetails = async(req, res) => {
+  // res.render('home');
+
+  const userId = req.requestingUser;   //requestingUser is defined from isAuthenticated.js line no. 32
+  const myDetails = await students_details.findAll({
+    where: {
+      userId : userId   // first ko userId vaneko students_details ko table ma vako naam sanga same hunu parxa  anii second ko userId => line no. 113 ma define gareko object lai call gareko matra ho
+    }
+  });
+  res.render("myDetails", { myDetails: myDetails });
+}

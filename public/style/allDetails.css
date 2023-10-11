@@ -1,16 +1,64 @@
+/* Reset default styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
 }
 
+/* Header section for contact information */
+.contact-header {
+    height: 30vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(4, 9, 30, 0.7)), url(../background.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+    animation: color-change 4s infinite;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+}
+
+@keyframes color-change {
+    0% { color: #fff; }
+    50% { color: #93bbef; }
+    100% { color: #fff; }
+}
+
+.contact-header h1 {
+    margin-top: 100px;
+    margin-bottom: 10px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.contact-header p {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Container for content */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Main content style */
+.main-content {
+    text-align: justify;
+    font-size: 18px;
+    margin: 30px;
+    margin-top: 10px;
+    margin-right: 40px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Student card style */
 .student-card {
     background-color: #3498d6;
     border-radius: 8px;
@@ -26,37 +74,41 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Definition list style */
 dl {
     margin: 0;
     padding: 0;
 }
 
+/* Description term style */
 pre {
     font-family: Arial, sans-serif;
     font-weight: bold;
     color: #ffffff;
     margin-top: 10px;
-    display: inline-block; /* Display DT elements inline */
+    display: inline-block;
     width: 30%;
 }
 
+/* Description details style */
 dd {
     color: #ffffff;
     margin: 0;
     margin-left: 10px;
     margin-top: 10px;
     display: inline-block;
-    width: 65%; /* Adjust width for alignment */
+    width: 65%;
 }
 
+/* Button style */
 .btn {
     display: inline-block;
-    background-color:#007BFF;
+    background-color: #007BFF;
     color: #fff;
     padding: 10px 20px;
-    margin-top: 0; 
-    margin-left: 630px; 
-    border: 2px solid #fff; /* Add white border */
+    margin-top: 0;
+    margin-left: 630px;
+    border: 2px solid #fff;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
@@ -68,7 +120,3 @@ dd {
 .btn:hover {
     background-color: #0056b3;
 }
-
-
-
-

@@ -93,3 +93,30 @@ body {
     color: #000000;
   }
   /* Login page end */
+
+
+/* Alert message styles */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red background color */
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+/* Style for success message (you can add this for successful login if needed) */
+.success {
+  background-color: #4CAF50; /* Green background color */
+}

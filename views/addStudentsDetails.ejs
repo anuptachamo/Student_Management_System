@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="/style/navbar.css">
 </head>
 <body>
-    <!-- main start -->
 	<section class="contact-header">
 
 		<h1>Add Student Details </h1>
 		<p>Computer Engineering</p>		
 	</section>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, ab harum! Quod repudiandae nemo mollitia aperiam sit quae, quos quibusdam fugiat iusto dignissimos perferendis nulla, numquam vel ipsa. Iusto, non!
+    <p class="main-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, ab harum! Quod repudiandae nemo mollitia aperiam sit quae, quos quibusdam fugiat iusto dignissimos perferendis nulla, numquam vel ipsa. Iusto, non!
     Animi molestiae nobis at amet magnam temporibus natus ad et deleniti ullam fugiat iusto commodi esse quae, blanditiis, fugit explicabo assumenda quasi beatae! Saepe expedita ab blanditiis maiores magni et!
     Voluptatum laboriosam rem in ullam voluptate qui sapiente laborum sint, ab ipsam provident maiores laudantium accusamus doloremque recusandae enim ipsum veritatis voluptatem voluptas quod earum. Sint voluptatibus aliquid ex vitae?
     Porro iure autem quasi libero doloribus, obcaecati, deleniti illum minima doloremque quia officia quod nihil iusto voluptate. Autem error illum iure dignissimos, nihil asperiores earum eos! Illum veniam a non.
@@ -31,48 +30,55 @@
     Rerum expedita iste cum ut quisquam quo at a impedit! Totam sit dolores error, non cupiditate aliquid placeat distinctio ut facilis quia, veritatis animi repellendus voluptas saepe blanditiis sint excepturi!
     </p>
     <div class="container">
-        <h2>Add Student Details</h2>
-
+    <fieldset>
+        <legend>Add Student Details</legend>
         <!-- Create a form for adding student details with a POST request to "/addStudent" endpoint -->
         <form action="/addStudent" method="post">
             <div class="row">
-                <!-- Create a row for form elements -->
                 <div class="row-item">
-                    <!-- Create a column for an input field -->
-                    <!-- Display a label for the "Full Name" input -->
-                    <label for="fullname">Full Name</label>
-
-                    <!-- Create an input field for the full name with placeholder text and a "required" attribute -->
-                    <input type="text" id="fullname" name="fullname" placeholder="your vaild fullname" required>
+                    <div class="input-container">
+                        <input type="text" id="fullname" name="fullname" class="input-field" required>
+                        <label for="fullname" class="input-label">Full name</label>
+                    </div>
                 </div>
 
                 <div class="row-item">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="your vaild address" required>
+                    <div class="input-container">
+                        <input type="text" id="address" name="address" class="input-field" required>
+                        <label for="address" class="input-label">Address</label>
+                    </div>
                 </div>
             </div>
-    
+
             <div class="row">
                 <div class="row-item">
-                    <label for="grade">Grade</label>
-                    <input type="number" id="grade" name="grade" placeholder="your grade" required>
+                    <div class="input-container">
+                        <input type="number" id="grade" name="grade" class="input-field" required>
+                        <label for="grade" class="input-label">Grade</label>
+                    </div>
                 </div>
 
                 <div class="row-item">
-                    <label for="rollno">Roll number</label>
-                    <input type="number" id="rollno" name="rollno" placeholder="your roll number" required>
+                    <div class="input-container">
+                        <input type="number" id="rollno" name="rollno" class="input-field" required>
+                        <label for="rollno" class="input-label">Roll number</label>
+                    </div>
                 </div>
             </div>
-    
+
             <div class="row">
                 <div class="row-item">
-                    <label for="age">Age</label>
-                    <input type="number"  id="age" name="age" placeholder="your age" required>
+                    <div class="input-container">
+                        <input type="number" id="age" name="age" class="input-field" required>
+                        <label for="age" class="input-label">Age</label>
+                    </div>
                 </div>
 
                 <div class="row-item">
-                    <label for="contactno">Contact Number</label>
-                    <input type="text" id="contactno" name="contactno" placeholder="Your contact number" required>
+                    <div class="input-container">
+                        <input type="number" id="contactno" name="contactno" class="input-field" required>
+                        <label for="contactno" class="input-label">Contact number</label>
+                    </div>
                 </div>
             </div>
     
@@ -82,10 +88,8 @@
                 </div>
             </div>
         </form>
+    </fieldset>
     </div>
-    
-
     <%- include("footer.ejs")%>
-
 </body>
 </html>

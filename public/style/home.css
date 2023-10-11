@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(4,9,30,0.7)),url(../background.jpg);
-
+    /* background-image: linear-gradient(rgba(0,0,0,0.5),rgba(4,9,30,0.7)),url(../background.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -62,7 +61,6 @@ body {
 .animated-text {
     font-weight: bold;
     font-size: 40px;
-    color: #ffffff;
     animation: color-change 4s infinite;
     text-align: center;
     margin: 10px;
@@ -70,33 +68,34 @@ body {
 }
 
 @keyframes color-change {
-    0% { color: #fff; }
+    0% { color: #bcacac; }
     50% { color: #93bbef; }
-    100% { color: #fff; }
+    100% { color: #000000; }
 }
 .main_p{
     text-align: center; 
-    color: #fff;
+    color: #000000;
     font-size: 18px;
     margin: 30px;
+    margin-top: 10px;
     margin-right: 40px;
     text-align: justify;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7); */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); */
 }
 
-/* Add styles for the button */
 .main_p .external-link-button {
+    background-color: #1667D6;
     text-decoration: none;
     color: #fff;
-    background-color: #1667D6;
-    padding: 10px;
-    position: relative;
-    left: 220px;
-    top: 60px;
     border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left: 1200px;
+    bottom: 20px;
+    padding: 10px;
 }
 
 .external-link-button:hover {

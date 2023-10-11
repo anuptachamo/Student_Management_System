@@ -7,7 +7,8 @@ const {
     renderAllDetails,
     renderHomePage,
     UpdateStudentsDetails, 
-    rendercontactUs
+    rendercontactUs,
+    rendermyDetails
 } = require("../controller/studentsDetails/studentController");
 const { isAuthenticated } = require("../middleware/isAuthenticated");
 
@@ -40,5 +41,8 @@ router.route("/delete/:id").get(isAuthenticated, renderDeleteStudentsDetails)
 
 //* Contact Us
 router.route("/contactUs").get(rendercontactUs)
+
+//* My Details
+router.route("/myDetails").get(isAuthenticated,rendermyDetails)
 
 module.exports = router;

@@ -15,7 +15,9 @@ exports.RegisterPage = async(req, res ) =>{
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
     if(password !== confirmPassword){
-      return res.send("password and confirm password doesn't match")
+      // return res.send("password and confirm password doesn't match")
+      return res.send('<script>alert("password and confirm password does not match"); window.location.href="/login";</script>');
+
     }
   
     //database ma halnu paryo
@@ -51,7 +53,9 @@ exports.LoginPage =  async (req, res) => {
     // if registered xaina vaney(no)
     if (userFound.length == 0) {
       // error faldinu paryo invalid email or email not registered error
-      res.send("Invalid email or password");
+      // res.send("Invalid email or password");
+      return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+
     } else {
       const databasePassword = userFound[0].password; // database pahila register garda ko password
       //if registered xa vaney (yes)
@@ -80,14 +84,16 @@ exports.LoginPage =  async (req, res) => {
         res.render("home");
       } else {
         // match vayena (no) , error->invalid password
-        res.send("Invalid email or password");
+        // res.send("Invalid email or password");
+      return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+
       }
     }
   } 
 
 
 //* logout(get)
-exports.renderLogoutPage = (req, res) => {
+exports.  renderLogoutPage = (req, res) => {
 
     // Redirect the user to the register page after logging out
     res.redirect('/');

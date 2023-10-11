@@ -1,6 +1,7 @@
 const express = require ('express'); //require a express
 const app = express(); //calling a express
 const cookieParser = require ('cookie-parser')
+
 //requiring dotenv and initializing it with default configuration
 require('dotenv').config()
 
