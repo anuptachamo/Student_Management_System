@@ -15,9 +15,6 @@ body {
     text-align: center;
     color: #fff;
     animation: color-change 4s infinite;
-    position: sticky;
-    top: 0;
-    bottom: 0;
 }
 
 @keyframes color-change {
@@ -108,7 +105,7 @@ dd {
 }
 
 .update-button {
-    margin-left: 350px; /* Adjust the margin to your preference */
+    margin-left: 300px; /* Adjust the margin to your preference */
     background-color: #1f971f;
 }
 
@@ -122,6 +119,34 @@ dd {
     color: #e55a5a;
     background-color: #fff;
     border: 2px solid #e55a5a;
+}
+
+
+.main-content {
+    position: relative;
+    background-color: #3498d6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #007BFF;
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.main-content img {
+    position: absolute;
+    top: 10px; /* Adjust the top value to control the distance from the top */
+    right: 10px; /* Adjust the right value to control the distance from the right */
+    width: 20%; /* Set the image width to 20% of the student-card */
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.main-content img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 

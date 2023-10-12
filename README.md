@@ -44,6 +44,7 @@ Open vscode
         g. npm install jsonwebtoken
         h. npm install dotenv
         i. npm install cookie-parser (help to read a cookie )
+        j. npm install multer (use for file handling like images pdf or any files)
 ```
 
 ## All Features

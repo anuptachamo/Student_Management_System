@@ -12,7 +12,6 @@ body {
   background-color: #ffffff;
   color: #5d92c8;
   padding: 10px;
-  padding-left: 30px;
   display: flex !important;
   flex-basis: auto;
   justify-content: space-between;
@@ -56,6 +55,7 @@ body {
     margin-right: 50rem;
 
   }
+
 
   .navbar-links {
     list-style: none;

@@ -17,6 +17,7 @@ app.set("view engine", "ejs");
 // folder access garna deko ejs file haru lai
 //public vitra ko folder access garna payo aba 
 app.use(express.static("./public")); 
+app.use(express.static("./uploads")); 
 
 
 app.use(cookieParser())

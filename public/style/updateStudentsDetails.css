@@ -34,7 +34,7 @@ form {
 }
 
 .container:hover {
-    color: #fff;
+    color: #000000;
     background-color: #0e5fb0;
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -100,4 +100,23 @@ label {
     margin-bottom: 6px;
     color: #ffffff;
     font-size: 16px;
+}
+
+.imagefile{
+    width: 48%;
+}
+
+.imagefile label {
+    font-weight: bold; /* Make the label text bold */
+    display: block; /* Display the label as a block element to stack it on top of the input field */
+}
+
+.imagefile input[type="file"] {
+    border: 1px solid #ccc; /* Add a border to the file input */
+    padding: 10px; /* Add some padding to the file input */
+
+    background-color: #f9f9f9; /* Background color for the file input */
+    border-radius: 5px;
+    cursor: pointer;
+
 }

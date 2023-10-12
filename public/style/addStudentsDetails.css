@@ -9,88 +9,23 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.main-content{
-    text-align: center; 
-    color: #000000;
-    font-size: 18px;
-    margin: 30px;
-    margin-top: 10px;
-    margin-right: 40px;
-    text-align: justify;
-    padding: 20px;
-    /* background-color: rgba(0, 0, 0, 0.7); */
-    border-radius: 10px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); */
-}
-
-.contact-header{
-	height: 30vh;
-	width: 100%;
-	background-image: linear-gradient(rgba(0,0,0,0.2),rgba(4,9,30,0.7)),url(../background.jpg);
-	background-position: center;
-	background-size: cover;
-	text-align: center;
-	color: #fff;
-    animation: color-change 4s infinite;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-}
-@keyframes color-change {
-    0% { color: #fff; }
-    50% { color: #93bbef; }
-    100% { color: #fff; }
-}
-
-.contact-header h1{
-    margin-top: 100px;
-    margin-bottom: 10px;
-    font-size: 40px;
-    text-align: center;
-    /* position: sticky;
-    top: 20px; */
-}
-
-.contact-header p{
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-size: 15px;
-    text-align: center;
-}
-
 .container {
     background-color: #007BFF;
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: relative;
-    /* transition: transform 0.2s ease-in-out; */
+    transition: transform 0.2s ease-in-out;
+
 }
 
-
-fieldset {
-    border: 2px solid #007bff;
-    border-radius: 8px;
-    padding: 20px; 
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
-}
-
-
-legend {
+h2 {
+    text-align: center;
     font-size: 24px;
-    font-weight: bold; 
-    color: #007bff; 
-    padding: 10px 20px;
-    border: 2px solid #007bff; 
-    border-radius: 5px; 
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-left: -10px;
-    margin-top: -30px; 
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 form {
@@ -100,60 +35,36 @@ form {
 }
 
 .container:hover {
-    color: #fff;
-    background-color: #0e5fb0;
-    transform: scale(1.03);
+    color: #000000;
+    background-color: rgb(56, 54, 54);
+    transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .row {
-    width: 90%; 
-    margin-bottom: 20px;
+    width: 100%; /* Each row takes up 100% of the container width */
+    margin-bottom: 20px; /* Add spacing between rows */
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Display input fields in a row */
     justify-content: space-between;
 }
 
 .row-item {
-    width: 45%;
-    margin-bottom: 10px;
+    width: 48%;
+    margin-bottom: 10px; /* Add spacing between input fields */
 }
 
-.input-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-
-.input-field {
-    width: 100%;
-    padding: 15px; /* Increase padding for better click/tap target */
+input {
+    width: 90%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s ease-in-out;
-    margin-top: 15px; 
 }
 
-.input-label {
-    position: absolute;
-    top: 50%;
-    left: 15px; 
-    transform: translateY(-50%);
-    color: #777;
-    pointer-events: none;
-    transition: top 0.3s, font-size 0.3s;
-    padding: 5px;
-    background-color: #fff; 
-}
-
-
-.input-field:focus + .input-label {
-    top: 10px;
-    font-size: 15px;
-    color: #007bff;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+input:focus {
+    border-color: #007bff;
 }
 
 .add-button {
@@ -178,8 +89,32 @@ form {
     background-color: #0056b3;
 }
 
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 16px;
+}
 
+.imagefile{
+    width: 48%;
+}
 
+.imagefile label {
+    font-weight: bold; /* Make the label text bold */
+    display: block; /* Display the label as a block element to stack it on top of the input field */
+}
+
+.imagefile input[type="file"] {
+    border: 1px solid #ccc; /* Add a border to the file input */
+    padding: 10px; /* Add some padding to the file input */
+
+    background-color: #f9f9f9; /* Background color for the file input */
+    border-radius: 5px;
+    cursor: pointer;
+
+}
 
 
 

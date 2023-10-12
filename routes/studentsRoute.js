@@ -16,13 +16,25 @@ const { isAuthenticated } = require("../middleware/isAuthenticated");
 //Create an Express Router instance.
 const router = require("express").Router()
 
+// importing multer and storage from multerConfig.js file
+const { multer, storage } = require("../middleware/multerConfig")
+const upload = multer ({storage: storage})
+
 // * home page
 router.route("/home").get(renderHomePage)
 
 //*POST method(http verbs)
 // addStudent vanne addStudentsDetails.ejs file ko FORM ko ACTION ma hunxa jahile, anii  METHOD jahile POST hunu parxa*/
 router.route("/addStudentsDetails").get(renderAddStudentsDetails)
-router.route("/addStudent").post(isAuthenticated, AddStudentsDetails)
+
+/* explaining line no. 37
+upload => line 21 bata define vako
+upload.single => ek choti ma euta matra image upload garna dinxa
+upload.array => ek choti ma euta vanda dherai image upload garna dinxa
+upload.single('image') => image vanne name addStudentsDetails.js file ko line no. 66 ko input field ko name sanga SAME HUNAII PARXA
+
+*/
+router.route("/addStudent").post(isAuthenticated, upload.single('image'), AddStudentsDetails) 
 
 //* All page details 
 router.route("/allDetails").get(renderAllDetails)

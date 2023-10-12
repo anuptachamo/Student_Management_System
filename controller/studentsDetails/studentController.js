@@ -17,17 +17,24 @@ exports.renderAddStudentsDetails = (req, res) => {
 exports.AddStudentsDetails = async(req, res) =>{ 
 
     // console.log(req.requestingUser[0].id, "USerId from AddStudentsDetails")
-    const userId = req.requestingUser[0].id
+    const userId = req.requestingUser
+ 
+    const fileName = req.file.filename
+    const { fullname, address, grade, rollno, age, contactno } = req.body;
+    if(!fullname || !address || !grade || !rollno || !age || !contactno ||!req.file){
+      return res.send("Please provide all details first")
+    }
 
     //database ma data pathauxa
     await students_details.create({
-      fullname : req.body.fullname,  // first fullname vaneko column fullname ho, second fullname vaneko form bata aako value 
-      address: req.body.address,
-      grade : req.body.grade,
-      rollno : req.body.rollno,
-      age : req.body.age,
-      contactno : req.body.contactno,
-      userId : userId
+      fullname : fullname,  // first fullname vaneko column fullname ho, second fullname vaneko form bata aako value 
+      address: address,
+      grade : grade,
+      rollno : rollno,
+      age : age,
+      contactno : contactno,
+      userId : userId,
+      image : process.env.PROJECT_URL + fileName
     })
 
     res.redirect('/allDetails');
@@ -84,7 +91,7 @@ exports.UpdateStudentsDetails = async (req, res) => {
 exports.renderAllDetails =   async (req, res) => {
     // res.render('home');
     const allSingleDetails = await students_details.findAll({
-      include : {
+      include : { //include =>join garna use hunxa
         model : users //users vanne table ma join gardeu vaneko ho
       }
     });
@@ -110,7 +117,7 @@ exports.rendercontactUs = (req, res) => {
 exports.rendermyDetails = async(req, res) => {
   // res.render('home');
 
-  const userId = req.requestingUser;   //requestingUser is defined from isAuthenticated.js line no. 32
+  const userId = req.requestingUser   //requestingUser is defined from isAuthenticated.js line no. 32
   const myDetails = await students_details.findAll({
     where: {
       userId : userId   // first ko userId vaneko students_details ko table ma vako naam sanga same hunu parxa  anii second ko userId => line no. 113 ma define gareko object lai call gareko matra ho
