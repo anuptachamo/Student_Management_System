@@ -25,6 +25,10 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use((req, res, next)=>{
+    res.locals.currentUser = req.cookies.token
+    next()
+})
 app.use("", allStudentsRoute)
 // app.use("/test", allStudentsRoute)
 app.use("", allAuthRoute)

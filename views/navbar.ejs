@@ -23,49 +23,47 @@
 
         <!-- Create an unordered list for navigation links -->
         <ul class="navbar-links">
-          <!-- Create a list item for the "Home" link with a home icon -->
-          <li>
-            <a href="/home" class="nav-link" data-tooltip="Home">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-
-          <!-- Create a list item for the "Add Details" link with a folder-plus icon -->
-          <li>
-            <a href="/addStudentsDetails" class="nav-link" data-tooltip="Add Details">
-              <i class="fas fa-folder-plus"></i>
-            </a>
-          </li>
-
-          <!-- Create a list item for the "All Details" link with a handshake icon -->
-          <li>
-            <a href="/allDetails" class="nav-link" data-tooltip="All Details">
-              <i class="fas fa-handshake"></i>
-            </a>
-          </li>
-
-          <!-- Create a list item for the "Contact" link with a handshake icon -->
-          <li>
-            <a href="/contactUs" class="nav-link" data-tooltip="Contact">
-              <i class="far fa-id-badge"></i>
-            </a>
-          </li>
-
-          <!-- Create a list item for the "My Details" link with a handshake icon -->
-          <li>
-            <a href="/myDetails" class="nav-link" data-tooltip="My Details">
-              <i class="fas fa-circle-info"></i>
-            </a>
-          </li>
-
-          <!-- Create a list item for the "Logout" link with a sign-out-alt icon -->
-          <li>
-            <a href="/logout" id="logout-link" class="nav-link" data-tooltip="Logout">
-              <i class="fas fa-sign-out-alt"></i>
-            </a>
-          </li>
-        </ul>
-
+          <% if(currentUser){ %>
+            <li>
+              <a href="/home" class="nav-link" data-tooltip="Home">
+                <i class="fas fa-home"></i>
+              </a>
+            </li>
+            
+            <li>
+              <a href="/addStudentsDetails" class="nav-link" data-tooltip="Add Details">
+                <i class="fas fa-folder-plus"></i>
+              </a>
+            </li>
+            
+            <li>
+              <a href="/allDetails" class="nav-link" data-tooltip="All Details">
+                <i class="fas fa-handshake"></i>
+              </a>
+            </li>
+            
+            <li>
+              <a href="/contactUs" class="nav-link" data-tooltip="Contact">
+                <i class="far fa-id-badge"></i>
+              </a>
+            </li>
+            
+            <li>
+              <a href="/myDetails" class="nav-link" data-tooltip="My Details">
+                <i class="fas fa-circle-info"></i>
+              </a>
+            </li>
+            
+            <li>
+              <a href="/logout" id="logout-link" class="nav-link" data-tooltip="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+              </a>
+            </li>
+         <% }else{%>
+                <a href="/">Register</a>
+                <a href="/login">Login</a>
+         <%} %>
+          </ul>
       </div>
 </body>
 </html>
