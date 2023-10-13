@@ -83,13 +83,15 @@ exports.UpdateStudentsDetails = async (req, res) => {
       }
     })
     let fileURL
-    if(req.file && req.file.fileName){
+    if(req.file){
       // If there is a new file uploaded with a filename, use its URL
-      fileURL = process.env.PROJECT_URL + req.file.fileName
+      fileURL = process.env.PROJECT_URL + req.file.filename
     }else{
       // If no new file uploaded or filename is undefined, use the old image URL
       fileURL = oldData[0].image  //old fileURL
     }
+    // console.log(req.file.filename, "hello")
+    // console.log(fileURL)
 
     const updateFields = {
       // Update other fields from req.body

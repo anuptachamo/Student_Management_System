@@ -81,7 +81,7 @@ exports.LoginPage =  async (req, res) => {
 
       if (isPasswordCorrect) {
         // match vayo(yes),login successfully
-        res.render("home");
+        res.redirect("/home");
       } else {
         // match vayena (no) , error->invalid password
         // res.send("Invalid email or password");

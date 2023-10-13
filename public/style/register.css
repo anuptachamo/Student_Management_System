@@ -78,7 +78,7 @@ body {
   }
 
   button:hover {
-    background-color: #000000;
+    background-color: #007BFF;
     color: white;
   }
 
@@ -95,9 +95,46 @@ body {
   }
 
   .login-link a:hover{
-    color: #000000;
+    color: #b7b9bc;
   }
 
+
+  .form-group-password{
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+  
+  }
+  
+  #togglePassword {
+    color: rgb(146, 139, 139);
+    position: absolute;
+    top: 70%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  
+  #togglePassword.hide {
+    display: none;
+  }
+
+  #toggleConfirmPassword {
+    color: rgb(146, 139, 139);
+    position: absolute;
+    top: 70%;
+    right: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  
+  #toggleConfirmPassword.hide {
+    display: none;
+  }
+
+  
 /* Registration page End */
 
 

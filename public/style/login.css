@@ -21,7 +21,7 @@ body {
   }
 
   .container:hover {
-    color: #fff;
+    color: #000000;
     background-color: #0e5fb0;
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -36,6 +36,7 @@ body {
 
   .form-group {
     margin-bottom: 20px;
+    
   }
 
   label {
@@ -46,7 +47,8 @@ body {
   }
 
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="text"] {
     width: 90%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -73,7 +75,7 @@ body {
   }
 
   button:hover {
-    background-color: #000000;
+    background-color: #007BFF;
     color: #fff;
   }
 
@@ -90,7 +92,7 @@ body {
   }
 
   .signup-link a:hover{
-    color: #000000;
+    color: #b7b9bc;
   }
   /* Login page end */
 
@@ -116,7 +118,32 @@ body {
   cursor: pointer;
 }
 
-/* Style for success message (you can add this for successful login if needed) */
+
 .success {
   background-color: #4CAF50; /* Green background color */
 }
+
+.form-group-password{
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+#togglePassword {
+  color: rgb(146, 139, 139);
+  position: absolute;
+  top: 70%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+#togglePassword.hide {
+  display: none;
+}
+
+
+
+

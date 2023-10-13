@@ -9,7 +9,7 @@ exports.isAuthenticated = async(req, res, next) =>{
 
     //check if token given or not
     if(!token){
-        return res.send("You must be logged In")
+        return res.send('<script>alert("You have been signed out"); window.location.href="/login";</script>');
     }
 
     // verify token if it is legit or not

@@ -21,7 +21,7 @@ const { multer, storage } = require("../middleware/multerConfig")
 const upload = multer ({storage: storage})
 
 // * home page
-router.route("/home").get(renderHomePage)
+router.route("/home").get(isAuthenticated,renderHomePage)
 
 //*POST method(http verbs)
 // addStudent vanne addStudentsDetails.ejs file ko FORM ko ACTION ma hunxa jahile, anii  METHOD jahile POST hunu parxa*/
