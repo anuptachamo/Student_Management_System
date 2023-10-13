@@ -9,7 +9,7 @@ body {
 .contact-header {
     height: 30vh;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(4, 9, 30, 0.7)), url(../background.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(4, 9, 30, 0.7)), url(/images/background.jpg);
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -105,8 +105,8 @@ dd {
     background-color: #007BFF;
     color: #fff;
     padding: 10px 20px;
-    margin-top: 0;
-    margin-left: 630px;
+    /* margin-left: 630px; */
+    margin-top: 20px;
     border: 2px solid #fff;
     border-radius: 4px;
     text-decoration: none;

@@ -1,7 +1,7 @@
 /*students_details is an table name which are on database [studentRecordsCms] 
 (index.js ko line no. 33)*/
 const { students_details, users} = require("../../Model/index");
-
+const fs = require ("fs")  //fs=>filesystem
 
 //* home(get)
 exports.renderHomePage = async (req, res) => {
@@ -110,7 +110,37 @@ exports.UpdateStudentsDetails = async (req, res) => {
       where: {
         id: id,
       },
-    });
+    })
+    
+    /*explaining code no. 117 to 132
+    how to delete the previous image after new update
+    */
+    const oldImagePath = oldData[0].image
+    // console.log(oldImagePath)  // http://localhost:3000/image.png
+
+    const lengthofunwanted = "http://localhost:3000".length
+    // console.log(lengthofunwanted)
+
+    const fileNameInUploadsFolder = oldImagePath.slice(lengthofunwanted)
+    console.log(fileNameInUploadsFolder)
+
+    fs.unlink("uploads/" + fileNameInUploadsFolder, (err)=>{
+      if(err){
+        console.log("Error while deleting file", err)
+      }else{
+        console.log("file Delete Successfully")
+      }
+    })
+
+    /*
+    fs.unlink('uploads/test.txt',(err)=>{
+      if(err){
+        console.log("error happened", err)
+      }else{
+        console.log("Delete Successfully")
+      }
+    })
+    */
     // update vayisakeypaxi direct to sDetails.ejs page of that specific id
     res.redirect("/single/" + id);
   }
