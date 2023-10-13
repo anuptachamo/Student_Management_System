@@ -46,7 +46,7 @@ router.route("/single/:id").get(renderSingleStudentDetails)
 // /*Updating Students details [POST]
 // updatestudent is define in updateStudentsDetails.ejs file line no. 15*/
 router.route("/update/:id").get(renderUpdateStudentsDetails)
-router.route("/updateStudent/:id").post(isAuthenticated, UpdateStudentsDetails)
+router.route("/updateStudent/:id").post(isAuthenticated, upload.single('image'), UpdateStudentsDetails)
 
 //*delete
 router.route("/delete/:id").get(isAuthenticated, renderDeleteStudentsDetails)

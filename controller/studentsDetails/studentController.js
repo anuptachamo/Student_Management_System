@@ -75,10 +75,38 @@ exports.renderUpdateStudentsDetails = async (req, res) => {
 //* update(post)
 exports.UpdateStudentsDetails = async (req, res) => {
     const id = req.params.id;
+
+    //for updating the image
+    const oldData = await students_details.findAll({
+      where : {
+        id : id
+      }
+    })
+    let fileURL
+    if(req.file && req.file.fileName){
+      // If there is a new file uploaded with a filename, use its URL
+      fileURL = process.env.PROJECT_URL + req.file.fileName
+    }else{
+      // If no new file uploaded or filename is undefined, use the old image URL
+      fileURL = oldData[0].image  //old fileURL
+    }
+
+    const updateFields = {
+      // Update other fields from req.body
+      fullName: req.body.fullName,
+      address: req.body.address,
+      grade: req.body.grade,
+      rollno : req.body.rollno,
+      age : req.body.age,
+      contactno : req.body.contactno,
+
+      //update the image URL
+      image: fileURL,
+    }
   
     // update
     // form bata(req.body) bata aako kura haru(fullname, address, grade, etc) lai update gardey where id ko value chae tyo parameter bata aako id ko value xa 
-    await students_details.update(req.body, {
+    await students_details.update(updateFields,{
       where: {
         id: id,
       },

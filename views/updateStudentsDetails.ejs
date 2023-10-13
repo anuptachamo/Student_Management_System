@@ -16,7 +16,7 @@
         <h2>Update Student Details</h2>
 
         <!-- Create a form for updating student details with a POST request to "/updateStudent/<%- id %>" endpoint, where "<%- id %>" will be replaced with the actual student's ID -->
-        <form action="/updateStudent/<%-id %>" method="post">
+        <form action="/updateStudent/<%-id %>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="row-item">
                     <label for="fullname">Full Name</label>
@@ -57,7 +57,7 @@
                 <div class="imagefile">
                     <label for="image">Upload your image:</label>
                     <!-- while using type = file you needed to install a multer(npm install multer)  -->
-                    <input type="file" id="image" name="image" required>  
+                    <input type="file" id="image" name="image" value="<%-allSingleDetails[0].image %>">  
                 </div>
             </div>
     

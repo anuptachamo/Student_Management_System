@@ -94,7 +94,7 @@ exports.LoginPage =  async (req, res) => {
 
 //* logout(get)
 exports.  renderLogoutPage = (req, res) => {
-
-    // Redirect the user to the register page after logging out
-    res.redirect('/');
+    res.clearCookie('token')
+    // Redirect the user to the login page after logging out
+    res.redirect('/login');
 }
