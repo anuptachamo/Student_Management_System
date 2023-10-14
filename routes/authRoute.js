@@ -3,8 +3,11 @@ const {
     RegisterPage,
     renderLoginPage,
     LoginPage,
-    renderLogoutPage 
+    renderLogoutPage, 
+    renderforgotPassword,
+    checkforgotPassword
 } = require("../controller/auth/authController")
+const { isAuthenticated } = require("../middleware/isAuthenticated")
 
 //Create an Express Router instance.
 const router = require("express").Router()
@@ -19,5 +22,9 @@ router.route("/createLogin").post(LoginPage)
 
 //* logout
 router.route("/logout").get(renderLogoutPage)
+
+//* forgot password(get) and (post)
+router.route("/forgotPassword").get(renderforgotPassword).post(checkforgotPassword)   //URL same vako le get, post sangaii define garna mileko ho
+
 
 module.exports = router;

@@ -131,7 +131,7 @@ body {
 }
 
 #togglePassword {
-  color: rgb(146, 139, 139);
+  color: #57a4f6;
   position: absolute;
   top: 70%;
   right: 30px;
@@ -143,6 +143,21 @@ body {
 #togglePassword.hide {
   display: none;
 }
+
+
+/* Add this CSS to your login.css file or in a <style> tag within the HTML document */
+.form-group label a {
+  color: #ffffff; /* Change the link color to your preference */
+  text-decoration: none;
+  margin-left: 260px;
+  font-size: 15px;
+}
+
+.form-group label a:hover {
+  color: white;
+  text-decoration: none /* Add an underline effect when hovering */
+}
+
 
 
 

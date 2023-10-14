@@ -107,7 +107,7 @@ body {
   }
   
   #togglePassword {
-    color: rgb(146, 139, 139);
+    color: #57a4f6;
     position: absolute;
     top: 70%;
     right: 30px;
@@ -121,7 +121,7 @@ body {
   }
 
   #toggleConfirmPassword {
-    color: rgb(146, 139, 139);
+    color: #57a4f6;
     position: absolute;
     top: 70%;
     right: 30px;

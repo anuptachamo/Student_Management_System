@@ -93,8 +93,35 @@ exports.LoginPage =  async (req, res) => {
 
 
 //* logout(get)
-exports.  renderLogoutPage = (req, res) => {
+exports.renderLogoutPage = (req, res) => {
     res.clearCookie('token')
     // Redirect the user to the login page after logging out
     res.redirect('/login');
+}
+
+//* forgot password(get)
+exports.renderforgotPassword = (req, res) => {
+  res.render("forgotPassword")
+}
+
+//* forgot password(post)
+exports.checkforgotPassword = async (req, res) => {
+  const email = req.body.email
+  if(!email){
+    return res.send ("please provide email")
+  }
+
+  //if email -> users table check with that email
+  const checkEmailExists = await users.findAll({
+    where : {
+      email : email
+    }
+  })
+
+  if(checkEmailExists.length == 0){
+    res.send("user with that email doesn't exist")
+  }else{
+
+    //tyo email ma otp pathauney
+  }
 }
