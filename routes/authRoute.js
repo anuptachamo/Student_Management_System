@@ -5,7 +5,10 @@ const {
     LoginPage,
     renderLogoutPage, 
     renderforgotPassword,
-    checkforgotPassword
+    checkforgotPassword,
+    renderOTPForm,
+    handleOTP,
+    renderChangePassword
 } = require("../controller/auth/authController")
 const { isAuthenticated } = require("../middleware/isAuthenticated")
 
@@ -26,5 +29,13 @@ router.route("/logout").get(renderLogoutPage)
 //* forgot password(get) and (post)
 router.route("/forgotPassword").get(renderforgotPassword).post(checkforgotPassword)   //URL same vako le get, post sangaii define garna mileko ho
 
+//* otp(get)
+router.route("/otp").get(renderOTPForm)
+
+//* otp(post)
+router.route("/otp/:id").post(handleOTP)
+
+//* change password(get)
+router.route("/changePassword").get(renderChangePassword)
 
 module.exports = router;

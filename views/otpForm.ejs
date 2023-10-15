@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forgot password</title>
+        <!-- Include CSS stylesheets for styling -->
+        <link rel="stylesheet" href="/style/forgotPassword.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    </head>
+<body>
+    <div class="container">
+        <h3>Verify OTP</h3>
+            
+            <form action="/otp/<%- email %>" method="post">
+                <div class="form-group">
+                    <label for="otp">OTP</label>
+                    <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+                </div>
+
+                <button type="submit">verify OTP</button>
+            </form>
+            
+    </div>
+
+
+    
+    
+</body>
+</html>
+

@@ -139,17 +139,73 @@ exports.checkforgotPassword = async (req, res) => {
       otp : "this is to notify that we are closing soon"
     })
     }
-
     */
+
+    const generatedOTP = Math.floor(10000 * Math.random(9999))  //asking for give 4 digits of numbers between 1000 to 9000
+    console.log(generatedOTP)
+
     //tyo email ma otp pathauney
     await sendEmail({  //function laii define gareko
       //key email, subject and otp services folder ko SendEmail.js file ko line no. 17-19 bata ako ho
       email : email,  // email vanne value  line no 110 bata ako ho
       subject : "Forgot Password OTP",
-      otp : 1234
+      otp : generatedOTP
     })
+    checkEmailExists[0].otp = generatedOTP
+    checkEmailExists[0].OTPGeneratedTime = Date.now()
+    await checkEmailExists[0].save()
 
-    res.send("Email Send Successfully")
+    res.redirect("/otp?email = " + email)
   }
 
+}
+
+
+//* Otp(get)
+exports.renderOTPForm = (req, res) => {
+  const email = req.query.email
+  console.log(email)
+  res.render('otpForm', {email : email});
+}
+
+//* Otp(post)
+exports.handleOTP = async(req, res)=>{
+  const otp = req.body.otp
+  const email = req.body.id
+  if(!otp || !email){
+    return res.send("Please send email and otp")
+  }
+  const userData = await users.findAll({
+    where : {
+      email :email,
+      otp : otp
+    }
+  })
+  if (userData.length == 0){
+    res.send("Invalid OTP")
+  }else{
+    const currentTime = Date.now() //current time
+    const OTPGeneratedTime = userData[0].OTPGeneratedTime  //past time
+    console.log("Current Time", currentTime)
+    console.log(OTPGeneratedTime)
+    console.log("Difference", currentTime - OTPGeneratedTime)
+
+    if(currentTime - OTPGeneratedTime <= 120000){
+      //OTP use vaisake paxii otp null hunxa
+      userData[0].otp = null
+      userData[0].OTPGeneratedTime = null 
+      await userData[0].save
+
+      // res.send("Valid OTP")
+      res.redirect("/changePassword")
+    }else{
+      res.send("OTP has Expired")
+    }
+  }
+}
+
+
+//* changed password(get)
+exports.renderChangePassword = (req, res) => {
+  res.render("changePassword")
 }

@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer")  //for this you needed to install nodemailer(npm i nodemailer)
-const { options } = require("../routes/authRoute")
+
 
 const sendEmail = async (options) =>{ //options is just a parameter
     var transporter = nodemailer.createTransport({
