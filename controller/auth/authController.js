@@ -2,6 +2,7 @@
 const jwt = require("jsonwebtoken");
 const { users } = require("../../Model");
 const bcrypt = require("bcryptjs"); //password hashing lagii use garxa
+const sendEmail = require("../../services/sendEmail");
 
 
 //* register(get)
@@ -106,10 +107,16 @@ exports.renderforgotPassword = (req, res) => {
 
 //* forgot password(post)
 exports.checkforgotPassword = async (req, res) => {
+  // const arrayOfEmails = ['anuptachamo@gmail.com','testing@gmail.com']    //-> sending to a multiple mail in gmail alc
   const email = req.body.email
   if(!email){
     return res.send ("please provide email")
   }
+
+  /* 
+  * for sending mails to the all users
+  const allUsers = await users.findAll()
+  */
 
   //if email -> users table check with that email
   const checkEmailExists = await users.findAll({
@@ -121,7 +128,28 @@ exports.checkforgotPassword = async (req, res) => {
   if(checkEmailExists.length == 0){
     res.send("user with that email doesn't exist")
   }else{
+    /*
+    * How to send a mail to all users table
+    for (let i = 0; i < allUsers.length; i++){  // allUsers define from line no. 118
+        //tyo email ma otp pathauney
+     await sendEmail({  //function laii define gareko
+      //key email, subject and otp services folder ko SendEmail.js file ko line no. 17-19 bata ako ho
+      email : allUsers[i].email,  // email vanne value  line no 110 bata ako ho
+      subject : "This is bulk Gmail",
+      otp : "this is to notify that we are closing soon"
+    })
+    }
 
+    */
     //tyo email ma otp pathauney
+    await sendEmail({  //function laii define gareko
+      //key email, subject and otp services folder ko SendEmail.js file ko line no. 17-19 bata ako ho
+      email : email,  // email vanne value  line no 110 bata ako ho
+      subject : "Forgot Password OTP",
+      otp : 1234
+    })
+
+    res.send("Email Send Successfully")
   }
+
 }

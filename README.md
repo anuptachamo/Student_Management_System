@@ -73,3 +73,5 @@ Open vscode
 ## 🚀 About Me
 I'm a frontend developer and just a beginner at Node js...
 
+## 🚀 paused On
+    - Day 10 42:00 min

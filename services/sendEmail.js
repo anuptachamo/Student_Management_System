@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer")  //for this you needed to install nodemailer(npm i nodemailer)
 const { options } = require("../routes/authRoute")
 
 const sendEmail = async (options) =>{ //options is just a parameter
@@ -6,16 +6,17 @@ const sendEmail = async (options) =>{ //options is just a parameter
         service: "gmail",  //gmail ma mail pathauna lako le gmail lekheko
 
         auth: {
-            user: "anup.tachamo12@gmail.com",  //sender vaild gmail
-            pass: "gbfquuxgljtefxjr",   //this password is created from app password (note line no.)
+            user: process.env.EMAIL,  //process.env.EMAIL =>define for .env file (line no. 4)
+            pass: process.env.EMAIL_PASSWORD,   //process.env.EMAIL_PASSWORD => (line no. 5)
         },
     })
 
     const mailOptions ={
+        //key always be same all time 
         from: "Anup Tachamo <anup.tachamo12@gmail.com> ",  //yeta mathii ko naii gmail hunu parxa vaneko ni xna 
         to : options.email,
         subject : options.subject,
-        text : "Your OTP is " + options.opt,
+        text : "Your OTP is " + options.otp,
     }
 
     await transporter.sendMail(mailOptions)
