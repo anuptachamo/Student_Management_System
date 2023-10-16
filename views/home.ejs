@@ -12,6 +12,7 @@
     <title>Computer Engineering System Dashboard</title>
 </head>
 <body>
+    <p class="success"><%- success %></p>
     <div class="animated-text">
         Computer engineering and its future as a career
     </div>
@@ -73,6 +74,18 @@
     </div>
 <%- include("components/footer") %>
 
+<script>
+    const successMessage = document.querySelector('.success');
+    
+    // Check if the element with the "success" class exists
+    if (successMessage) {
+        // Hide the element after 2 seconds
+        setTimeout(() => {
+            successMessage.classList.add('hidden');
+        }, 10000);
+    }
+     
+  </script>
 </body>
 </html>
 

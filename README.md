@@ -46,6 +46,8 @@ Open vscode
         i. npm install cookie-parser (help to read a cookie )
         j. npm install multer (use for file handling like images pdf or any files)
         k. npm install nodemailer (use for sending a mail to some gmail )
+        l. npm install express-session (use for sending flash message)
+        m. npm install connect-flash (use for sending flash message)
 ```
 
 ## All Features

@@ -5,7 +5,8 @@ const fs = require ("fs")  //fs=>filesystem
 
 //* home(get)
 exports.renderHomePage = async (req, res) => {
-    res.render('home');
+  const success = req.flash("success")
+  res.render('home', {success : success});
   }
 
 //*addStudents(get)

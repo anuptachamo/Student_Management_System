@@ -35,7 +35,8 @@ exports.RegisterPage = async(req, res ) =>{
 
 //* login(get)
 exports.renderLoginPage = (req, res) =>{
-    res.render('login');
+  const error = req.flash("error")
+  res.render('login',{error : error});
   }
 
 //* login(post)
@@ -53,9 +54,10 @@ exports.LoginPage =  async (req, res) => {
   
     // if registered xaina vaney(no)
     if (userFound.length == 0) {
-      // error faldinu paryo invalid email or email not registered error
       // res.send("Invalid email or password");
-      return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+      // return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+      req.flash("error", "Invalid email or password")
+      res.redirect("/login")
 
     } else {
       const databasePassword = userFound[0].password; // database pahila register garda ko password
@@ -81,11 +83,13 @@ exports.LoginPage =  async (req, res) => {
       console.log("This is Token \n" + token)
 
       if (isPasswordCorrect) {
-        // match vayo(yes),login successfully
-        res.redirect("/home");
+        req.flash("success", "Logged in Successfully")
+        res.redirect("/home")
       } else {
         // match vayena (no) , error->invalid password
-      return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+      // return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
+      req.flash("error", "Invalid email or password")
+      res.redirect("/login")
 
       }
     }
@@ -155,7 +159,8 @@ exports.checkforgotPassword = async (req, res) => {
     checkEmailExists[0].otp = generatedOTP
     checkEmailExists[0].OTPGeneratedTime = Date.now()
     // console.log("OTP:", checkEmailExists[0].otp);
-// console.log("OTPGeneratedTime:", checkEmailExists[0].OTPGeneratedTime);
+    // console.log("OTPGeneratedTime:", checkEmailExists[0].OTPGeneratedTime);
+
     await checkEmailExists[0].save()
     // console.log("Update complete.");
     res.redirect("/otp?email=" + email)
