@@ -11,14 +11,16 @@ const {
     rendermyDetails
 } = require("../controller/studentsDetails/studentController");
 const { isAuthenticated } = require("../middleware/isAuthenticated");
-
-
-//Create an Express Router instance.
-const router = require("express").Router()
+const { isValidUser } = require("../middleware/validUser");
 
 // importing multer and storage from multerConfig.js file
 const { multer, storage } = require("../middleware/multerConfig")
 const upload = multer ({storage: storage})
+
+//Create an Express Router instance.
+const router = require("express").Router()
+
+
 
 // * home page
 router.route("/home").get(isAuthenticated,renderHomePage)

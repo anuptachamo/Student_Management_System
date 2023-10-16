@@ -8,9 +8,11 @@ const {
     checkforgotPassword,
     renderOTPForm,
     handleOTP,
-    renderChangePassword
+    renderChangePassword,
+    handlePasswordChange
 } = require("../controller/auth/authController")
 const { isAuthenticated } = require("../middleware/isAuthenticated")
+const { route } = require("./studentsRoute")
 
 //Create an Express Router instance.
 const router = require("express").Router()
@@ -37,5 +39,7 @@ router.route("/otp/:id").post(handleOTP)
 
 //* change password(get)
 router.route("/changePassword").get(renderChangePassword)
+
+router.route("/changePassword/:email/:otp").post(handlePasswordChange)
 
 module.exports = router;

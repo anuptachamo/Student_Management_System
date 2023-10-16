@@ -17,7 +17,7 @@ exports.RegisterPage = async(req, res ) =>{
     const confirmPassword = req.body.confirmPassword
     if(password !== confirmPassword){
       // return res.send("password and confirm password doesn't match")
-      return res.send('<script>alert("password and confirm password does not match"); window.location.href="/login";</script>');
+      return res.send('<script>alert("password and confirm password does not match"); window.location.href="/";</script>');
 
     }
   
@@ -85,7 +85,6 @@ exports.LoginPage =  async (req, res) => {
         res.redirect("/home");
       } else {
         // match vayena (no) , error->invalid password
-        // res.send("Invalid email or password");
       return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
 
       }
@@ -110,7 +109,8 @@ exports.checkforgotPassword = async (req, res) => {
   // const arrayOfEmails = ['anuptachamo@gmail.com','testing@gmail.com']    //-> sending to a multiple mail in gmail alc
   const email = req.body.email
   if(!email){
-    return res.send ("please provide email")
+    return res.send('<script>alert("please provide email"); window.location.href="/forgotPassword";</script>');
+
   }
 
   /* 
@@ -126,7 +126,8 @@ exports.checkforgotPassword = async (req, res) => {
   })
 
   if(checkEmailExists.length == 0){
-    res.send("user with that email doesn't exist")
+    return res.send('<script>alert("user with that email does not exist"); window.location.href="/forgotPassword";</script>');
+
   }else{
     /*
     * How to send a mail to all users table
@@ -141,7 +142,7 @@ exports.checkforgotPassword = async (req, res) => {
     }
     */
 
-    const generatedOTP = Math.floor(10000 * Math.random(9999))  //asking for give 4 digits of numbers between 1000 to 9000
+    const generatedOTP = Math.floor(100000 * Math.random(999999))  //asking for give 4 digits of numbers between 1000 to 9000
     console.log(generatedOTP)
 
     //tyo email ma otp pathauney
@@ -153,9 +154,11 @@ exports.checkforgotPassword = async (req, res) => {
     })
     checkEmailExists[0].otp = generatedOTP
     checkEmailExists[0].OTPGeneratedTime = Date.now()
+    // console.log("OTP:", checkEmailExists[0].otp);
+// console.log("OTPGeneratedTime:", checkEmailExists[0].OTPGeneratedTime);
     await checkEmailExists[0].save()
-
-    res.redirect("/otp?email = " + email)
+    // console.log("Update complete.");
+    res.redirect("/otp?email=" + email)
   }
 
 }
@@ -171,9 +174,9 @@ exports.renderOTPForm = (req, res) => {
 //* Otp(post)
 exports.handleOTP = async(req, res)=>{
   const otp = req.body.otp
-  const email = req.body.id
-  if(!otp || !email){
-    return res.send("Please send email and otp")
+  const email = req.params.id
+    if(!otp || !email){
+    return res.send('<script>alert("Please send email and otp"); window.location.href="/otpForm";</script>');
   }
   const userData = await users.findAll({
     where : {
@@ -186,20 +189,20 @@ exports.handleOTP = async(req, res)=>{
   }else{
     const currentTime = Date.now() //current time
     const OTPGeneratedTime = userData[0].OTPGeneratedTime  //past time
-    console.log("Current Time", currentTime)
-    console.log(OTPGeneratedTime)
-    console.log("Difference", currentTime - OTPGeneratedTime)
+  
 
     if(currentTime - OTPGeneratedTime <= 120000){
-      //OTP use vaisake paxii otp null hunxa
+      /* OTP use vaisake paxii otp null hunxa
       userData[0].otp = null
       userData[0].OTPGeneratedTime = null 
       await userData[0].save
+      */
 
-      // res.send("Valid OTP")
-      res.redirect("/changePassword")
+      //OTP valid vayo vaney yo chalxa
+      // res.redirect("/changePassword?email=" + email)  //password change garna kun email ko pw change garne vanera check gareko
+      res.redirect(`/changePassword?email=${email}&otp=${otp}`)
     }else{
-      res.send("OTP has Expired")
+      return res.send('<script>alert("OTP has Expired"); window.location.href="/forgotPassword";</script>');
     }
   }
 }
@@ -207,5 +210,68 @@ exports.handleOTP = async(req, res)=>{
 
 //* changed password(get)
 exports.renderChangePassword = (req, res) => {
-  res.render("changePassword")
+  const email = req.query.email
+  const otp = req.query.otp
+  if( !email || !otp){
+    return res.send('<script>alert("Email and otp should provided in the query"); window.location.href="/changePassword";</script>');
+  }
+  res.render("changePassword", {email, otp})
+}
+
+//* changed password(post)
+exports.handlePasswordChange = async (req, res)=>{
+  const email = req.params.email
+  const otp = req.params.otp
+console.log(otp)
+  const newPassword = req.body.newPassword
+  const confirmNewPassword = req.body.confirmNewPassword
+
+  if(!newPassword || !confirmNewPassword || !email || !otp){
+    return res.send('<script>alert("Please provide new password and confirm password"); window.location.href="/changePassword";</script>');
+  }
+
+  //Checking if that emails otp or not
+  const userData = await users.findAll({
+    where : {
+      email :email,
+      otp : otp
+    }
+  })
+  if(newPassword !== confirmNewPassword){
+    return res.send('<script>alert("New password and confirm password does not match"); window.location.href="/changePassword";</script>');
+  }
+
+  if (userData.length == 0){
+    return res.send("Dont try to do this")
+  }
+  const currentTime = Date.now()
+  const OTPGeneratedTime = userData[0].OTPGeneratedTime 
+  console.log(currentTime, OTPGeneratedTime, currentTime-OTPGeneratedTime)
+  console.log(currentTime - OTPGeneratedTime >=120000)
+
+    if(currentTime - OTPGeneratedTime >= 120000){
+    
+        return res.redirect("/forgotPassword")
+    }
+  
+
+  const hashedNewPassword = bcrypt.hashSync(newPassword,8)  //newPassword laii hash garna lai gareko
+  //match vayo vaney?
+  /** Alternative
+    const userData = await users.findAll({
+      email :  email
+    })
+    userData[0].password = hashedNewPassword
+    await userData[0].save()
+  */
+
+  //users table ma newPassword change garna email check gareko anii newPassword laii hashed gareko
+  await users.update({ 
+    password : hashedNewPassword
+  },{
+    where : {
+      email : email
+    }
+  })
+  res.redirect("/login")
 }

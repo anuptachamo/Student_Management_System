@@ -9,7 +9,8 @@ require("./Model/index");
 
 //* Routes
 const allStudentsRoute = require("./routes/studentsRoute")
-const allAuthRoute = require("./routes/authRoute")
+const allAuthRoute = require("./routes/authRoute");
+const { decodeToken } = require('./services/decodeToken');
 
 //setting up ejs, telling nodejs to use ejs
 app.set("view engine", "ejs");
@@ -25,8 +26,15 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use((req, res, next)=>{
+app.use(async(req, res, next)=>{
     res.locals.currentUser = req.cookies.token
+    const token = req.cookies.token 
+    if(token){
+        const decryptedResult = await decodeToken(token,process.env.SECRETKEY)
+        if(decryptedResult && decryptedResult.id){
+            res.locals.currentUserId = decryptedResult.id
+        }
+    }
     next()
 })
 app.use("", allStudentsRoute)

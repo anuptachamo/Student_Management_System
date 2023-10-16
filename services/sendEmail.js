@@ -1,15 +1,21 @@
 const nodemailer = require("nodemailer")  //for this you needed to install nodemailer(npm i nodemailer)
-
+require("dotenv").config()
 
 const sendEmail = async (options) =>{ //options is just a parameter
     var transporter = nodemailer.createTransport({
         service: "gmail",  //gmail ma mail pathauna lako le gmail lekheko
 
+        /**
+         * process.env.EMAIL_PASSWORD => (line no. 5)
+         * process.env.EMAIL =>define for .env file (line no. 4)
+         */
         auth: {
-            user: process.env.EMAIL,  //process.env.EMAIL =>define for .env file (line no. 4)
-            pass: process.env.EMAIL_PASSWORD,   //process.env.EMAIL_PASSWORD => (line no. 5)
+            user: process.env.EMAIL,  
+            pass: process.env.EMAIL_PASSWORD,
+            
         },
     })
+
 
     const mailOptions ={
         //key always be same all time 
