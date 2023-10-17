@@ -14,6 +14,7 @@
 <body>
     <div class="container">
         <h2>CREATE AN ACCOUNT</h2>
+        <%- error %>
         <!-- Create a form for user registration with a POST request to "/createUser" endpoint -->
         <form action="/createUser" method="post">
             <div class="form-group">
@@ -37,7 +38,7 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
                 <i class="fas fa-eye" id="toggleConfirmPassword"></i>
             </div>
-
+            <p class="error"><%- error%></p>
 
             <button type="submit">Sign Up</button>
         </form>
@@ -77,8 +78,21 @@
                 toggleConfirmPassword.classList.add('fa-eye');
             }
     });
-    </script>
 
+    
+    </script>
+<script>
+    const successMessage = document.querySelector('.error');
+    
+    // Check if the element with the "success" class exists
+    if (successMessage) {
+        // Hide the element after 2 seconds
+        setTimeout(() => {
+            successMessage.classList.add('hidden');
+        }, 3000);
+    }
+     
+  </script>
     
 </body>
 </html>

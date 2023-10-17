@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h2>LOGIN</h2>
-        <p><%- error %></p>
+        <p class="error"><%- error %></p>
             <!-- Create a form for user login with a POST request to "/createLogin" endpoint -->
             <form action="/createLogin" method="post">
                 <div class="form-group">
@@ -40,7 +40,7 @@
                 Don't have an account? <a href="/">Sign up</a>
             </div>
     </div>
-
+    
     <script>
         const passwordInput = document.getElementById('password');
         const togglePassword = document.getElementById('togglePassword');
@@ -56,8 +56,23 @@
                 togglePassword.classList.add('fa-eye');
             }
         });
+
+
+        
+         
     </script>
     
+    <script>
+        const successMessage = document.querySelector('.error');
+        
+        // Check if the element with the "success" class exists
+        if (successMessage) {
+            // Hide the element after 2 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 2000);
+        }
+      </script>
     
 </body>
 </html>

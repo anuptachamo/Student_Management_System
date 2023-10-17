@@ -76,4 +76,6 @@ Open vscode
 I'm a frontend developer and just a beginner at Node js...
 
 ## 🚀 paused On
-    - Day 10 42:00 min
+    - Day 14 12:32 min
+
+            <!-- <form action="/changePassword/<%-email %>/ <%-otp%>" method="post"> -->

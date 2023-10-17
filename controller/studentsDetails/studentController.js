@@ -22,7 +22,7 @@ exports.AddStudentsDetails = async(req, res) =>{
  
     const fileName = req.file.filename
     const { fullname, address, grade, rollno, age, contactno } = req.body;
-    if(!fullname || !address || !grade || !rollno || !age || !contactno ||!req.file){
+    if(!fullname || !address || !grade || !rollno || !age || !contactno || !req.file){
       return res.send('<script>alert("Please provide all details first"); window.location.href="/addStudentsDetails";</script>');
 
     }

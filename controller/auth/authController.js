@@ -7,52 +7,63 @@ const sendEmail = require("../../services/sendEmail");
 
 //* register(get)
 exports.renderRegisterPage = async (req, res) => {
-    res.render('register');
+  const error = req.flash("error")
+  res.render('register', {error : error});
 }
 
 //* register(post)
 exports.RegisterPage = async(req, res ) =>{
-    console.log(req.body);
-    const password = req.body.password
-    const confirmPassword = req.body.confirmPassword
-    if(password !== confirmPassword){
-      // return res.send("password and confirm password doesn't match")
-      return res.send('<script>alert("password and confirm password does not match"); window.location.href="/";</script>');
+  //try catch ko vitra haleko xa for proper error handling  
+  // try {
+      console.log(req.body);
+      const password = req.body.password
+      const confirmPassword = req.body.confirmPassword
+      if(password !== confirmPassword){
 
-    }
+        // return res.send("password and confirm password doesn't match")
+        // return res.send('<script>alert("password and confirm password does not match"); window.location.href="/";</script>');
+        req.flash("error", "password and confirm password does not match")
+        res.redirect("/")
+
+      }
   
-    //database ma halnu paryo
-    await users.create({
-        username : req.body.username,
-        email : req.body.email,
-        password : bcrypt.hashSync(req.body.password,10),
-      
+      //?database ma halnu paryo
+      await users.create({
+          username : req.body.username,
+          email : req.body.email,
+          password : bcrypt.hashSync(req.body.password,10),
+      })
+      res.redirect('/login')
 
-    })
-    res.redirect('/login')
+    // }catch (error) {
+    //   req.flash("Error",error.message)
+    //   res.redirect("/")
+    // }
   }
 
 
 //* login(get)
 exports.renderLoginPage = (req, res) =>{
+    
+  //?showing error message using flash and session
   const error = req.flash("error")
-  res.render('login',{error : error});
-  }
+    res.render('login',{error : error});
+  
+}
 
 //* login(post)
 exports.LoginPage =  async (req, res) => {
-    // email , password
     const email = req.body.email;
     const password = req.body.password;
   
-    //aako email registered xa ki xaina check garnu paryo
+    //?aako email registered xa ki xaina check garnu paryo
     const userFound = await users.findAll({
       where: {
         email: email,
       },
     });
   
-    // if registered xaina vaney(no)
+    //?if registered xaina vaney(no)
     if (userFound.length == 0) {
       // res.send("Invalid email or password");
       // return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
@@ -63,7 +74,7 @@ exports.LoginPage =  async (req, res) => {
       const databasePassword = userFound[0].password; // database pahila register garda ko password
       //if registered xa vaney (yes)
   
-      // if yes(xa) vaney ,password check garnu paryo
+      //?if yes(xa) vaney ,password check garnu paryo
       const isPasswordCorrect = bcrypt.compareSync(password, databasePassword);
       
       //Generated TOKEN here
@@ -86,7 +97,8 @@ exports.LoginPage =  async (req, res) => {
         req.flash("success", "Logged in Successfully")
         res.redirect("/home")
       } else {
-        // match vayena (no) , error->invalid password
+
+      //?match vayena (no) , error->invalid password
       // return res.send('<script>alert("Invalid email or password"); window.location.href="/login";</script>');
       req.flash("error", "Invalid email or password")
       res.redirect("/login")
@@ -95,17 +107,11 @@ exports.LoginPage =  async (req, res) => {
     }
   } 
 
-
-//* logout(get)
-exports.renderLogoutPage = (req, res) => {
-    res.clearCookie('token')
-    // Redirect the user to the login page after logging out
-    res.redirect('/login');
-}
-
 //* forgot password(get)
 exports.renderforgotPassword = (req, res) => {
-  res.render("forgotPassword")
+  const error = req.flash("error")
+  res.render('forgotPassword', {error : error});
+
 }
 
 //* forgot password(post)
@@ -113,7 +119,9 @@ exports.checkforgotPassword = async (req, res) => {
   // const arrayOfEmails = ['anuptachamo@gmail.com','testing@gmail.com']    //-> sending to a multiple mail in gmail alc
   const email = req.body.email
   if(!email){
-    return res.send('<script>alert("please provide email"); window.location.href="/forgotPassword";</script>');
+    // return res.send('<script>alert("please provide email"); window.location.href="/forgotPassword";</script>');
+    req.flash("error", "please provide email")
+    res.redirect("/forgotPassword")
 
   }
 
@@ -122,7 +130,7 @@ exports.checkforgotPassword = async (req, res) => {
   const allUsers = await users.findAll()
   */
 
-  //if email -> users table check with that email
+  //?if email -> users table check with that email
   const checkEmailExists = await users.findAll({
     where : {
       email : email
@@ -130,11 +138,13 @@ exports.checkforgotPassword = async (req, res) => {
   })
 
   if(checkEmailExists.length == 0){
-    return res.send('<script>alert("user with that email does not exist"); window.location.href="/forgotPassword";</script>');
+    // return res.send('<script>alert("user with that email does not exist"); window.location.href="/forgotPassword";</script>');
+    req.flash("error", "user with that email does not exist")
+    res.redirect("/forgotPassword")
 
   }else{
     /*
-    * How to send a mail to all users table
+    ? How to send a mail to all users table
     for (let i = 0; i < allUsers.length; i++){  // allUsers define from line no. 118
         //tyo email ma otp pathauney
      await sendEmail({  //function laii define gareko
@@ -149,7 +159,7 @@ exports.checkforgotPassword = async (req, res) => {
     const generatedOTP = Math.floor(100000 * Math.random(999999))  //asking for give 4 digits of numbers between 1000 to 9000
     console.log(generatedOTP)
 
-    //tyo email ma otp pathauney
+    //?tyo email ma otp pathauney
     await sendEmail({  //function laii define gareko
       //key email, subject and otp services folder ko SendEmail.js file ko line no. 17-19 bata ako ho
       email : email,  // email vanne value  line no 110 bata ako ho
@@ -158,11 +168,9 @@ exports.checkforgotPassword = async (req, res) => {
     })
     checkEmailExists[0].otp = generatedOTP
     checkEmailExists[0].OTPGeneratedTime = Date.now()
-    // console.log("OTP:", checkEmailExists[0].otp);
-    // console.log("OTPGeneratedTime:", checkEmailExists[0].OTPGeneratedTime);
-
     await checkEmailExists[0].save()
-    // console.log("Update complete.");
+  
+    req.flash("error", "Please check your Email")
     res.redirect("/otp?email=" + email)
   }
 
@@ -172,8 +180,10 @@ exports.checkforgotPassword = async (req, res) => {
 //* Otp(get)
 exports.renderOTPForm = (req, res) => {
   const email = req.query.email
-  console.log(email)
-  res.render('otpForm', {email : email});
+  // console.log(email)
+
+  const error = req.flash("error")
+  res.render('otpForm', {email : email,error : error});
 }
 
 //* Otp(post)
@@ -189,8 +199,11 @@ exports.handleOTP = async(req, res)=>{
       otp : otp
     }
   })
+  
   if (userData.length == 0){
-    res.send("Invalid OTP")
+    // res.send("Invalid OTP")
+    req.flash("error", "Your Otp Invalid")
+    res.redirect("/otp?email=" + email)
   }else{
     const currentTime = Date.now() //current time
     const OTPGeneratedTime = userData[0].OTPGeneratedTime  //past time
@@ -203,11 +216,14 @@ exports.handleOTP = async(req, res)=>{
       await userData[0].save
       */
 
-      //OTP valid vayo vaney yo chalxa
+      //*OTP valid vayo vaney yo chalxa
       // res.redirect("/changePassword?email=" + email)  //password change garna kun email ko pw change garne vanera check gareko
+      req.flash("error", "Now you can set new password")
       res.redirect(`/changePassword?email=${email}&otp=${otp}`)
     }else{
-      return res.send('<script>alert("OTP has Expired"); window.location.href="/forgotPassword";</script>');
+      // return res.send('<script>alert("OTP has Expired"); window.location.href="/forgotPassword";</script>');
+      req.flash("error", "OTP has Expired")
+      res.redirect("/forgotPassword")
     }
   }
 }
@@ -220,14 +236,16 @@ exports.renderChangePassword = (req, res) => {
   if( !email || !otp){
     return res.send('<script>alert("Email and otp should provided in the query"); window.location.href="/changePassword";</script>');
   }
-  res.render("changePassword", {email, otp})
+
+  const error = req.flash("error")
+  res.render('changePassword', {email : email, otp : otp, error : error});
 }
 
 //* changed password(post)
 exports.handlePasswordChange = async (req, res)=>{
   const email = req.params.email
   const otp = req.params.otp
-console.log(otp)
+  
   const newPassword = req.body.newPassword
   const confirmNewPassword = req.body.confirmNewPassword
 
@@ -235,7 +253,7 @@ console.log(otp)
     return res.send('<script>alert("Please provide new password and confirm password"); window.location.href="/changePassword";</script>');
   }
 
-  //Checking if that emails otp or not
+  //?Checking if that emails otp or not
   const userData = await users.findAll({
     where : {
       email :email,
@@ -244,24 +262,24 @@ console.log(otp)
   })
   if(newPassword !== confirmNewPassword){
     return res.send('<script>alert("New password and confirm password does not match"); window.location.href="/changePassword";</script>');
+    // req.flash("error", "New password and confirm password does not match")
+    // res.redirect("/changePassword")
   }
-
+  
   if (userData.length == 0){
     return res.send("Dont try to do this")
   }
   const currentTime = Date.now()
   const OTPGeneratedTime = userData[0].OTPGeneratedTime 
-  console.log(currentTime, OTPGeneratedTime, currentTime-OTPGeneratedTime)
-  console.log(currentTime - OTPGeneratedTime >=120000)
+  // console.log(currentTime, OTPGeneratedTime, currentTime-OTPGeneratedTime)
+  // console.log(currentTime - OTPGeneratedTime >=120000)
 
     if(currentTime - OTPGeneratedTime >= 120000){
-    
-        return res.redirect("/forgotPassword")
+      return res.redirect("/forgotPassword")
     }
-  
 
-  const hashedNewPassword = bcrypt.hashSync(newPassword,8)  //newPassword laii hash garna lai gareko
-  //match vayo vaney?
+  const hashedNewPassword = bcrypt.hashSync(newPassword,8)  //Hash the new password
+  //?match vayo vaney?
   /** Alternative
     const userData = await users.findAll({
       email :  email
@@ -270,13 +288,22 @@ console.log(otp)
     await userData[0].save()
   */
 
-  //users table ma newPassword change garna email check gareko anii newPassword laii hashed gareko
-  await users.update({ 
+  //?Update the user's password in the database
+  await users.update(
+    { 
     password : hashedNewPassword
-  },{
+  },
+  {
     where : {
       email : email
     }
   })
   res.redirect("/login")
+}
+
+
+//* logout(get)
+exports.renderLogoutPage = (req, res) => {
+  res.clearCookie('token')
+  res.redirect('/login');
 }

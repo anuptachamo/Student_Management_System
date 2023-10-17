@@ -10,23 +10,35 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     </head>
-<body>
-    <div class="container">
-        <h3>Verify OTP</h3>
+    <body>
+        <div class="container">
+            <h3>Verify OTP</h3>
             
             <form action="/otp/<%- email %>" method="post">
                 <div class="form-group">
                     <label for="otp">OTP</label>
                     <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
                 </div>
-
+                
+                <p class="success"><%- error %></p>
                 <button type="submit">verify OTP</button>
             </form>
             
     </div>
 
 
-    
+    <script>
+        const successMessage = document.querySelector('.success');
+        
+        // Check if the element with the "success" class exists
+        if (successMessage) {
+            // Hide the element after 2 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        }
+         
+      </script>
     
 </body>
 </html>
