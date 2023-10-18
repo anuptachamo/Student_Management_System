@@ -6,7 +6,7 @@ const fs = require ("fs")  //fs=>filesystem
 //* home(get)
 exports.renderHomePage = async (req, res) => {
   const success = req.flash("success")
-  res.render('home', {success : success});
+  res.render('home', {success : success})
   }
 
 //*addStudents(get)
@@ -23,7 +23,7 @@ exports.AddStudentsDetails = async(req, res) =>{
     const fileName = req.file.filename
     const { fullname, address, grade, rollno, age, contactno } = req.body;
     if(!fullname || !address || !grade || !rollno || !age || !contactno || !req.file){
-      return res.send('<script>alert("Please provide all details first"); window.location.href="/addStudentsDetails";</script>');
+      return res.send("Please provide all details first")
 
     }
 
@@ -78,7 +78,7 @@ exports.renderUpdateStudentsDetails = async (req, res) => {
 exports.UpdateStudentsDetails = async (req, res) => {
     const id = req.params.id;
 
-    //for updating the image
+    //*for updating the image
     const oldData = await students_details.findAll({
       where : {
         id : id
@@ -86,17 +86,15 @@ exports.UpdateStudentsDetails = async (req, res) => {
     })
     let fileURL
     if(req.file){
-      // If there is a new file uploaded with a filename, use its URL
+      //* If there is a new file uploaded with a filename, use its URL
       fileURL = process.env.PROJECT_URL + req.file.filename
     }else{
-      // If no new file uploaded or filename is undefined, use the old image URL
+      //* If no new file uploaded or filename is undefined, use the old image URL
       fileURL = oldData[0].image  //old fileURL
     }
-    // console.log(req.file.filename, "hello")
-    // console.log(fileURL)
 
     const updateFields = {
-      // Update other fields from req.body
+      //* Update other fields from req.body
       fullName: req.body.fullName,
       address: req.body.address,
       grade: req.body.grade,
@@ -104,26 +102,26 @@ exports.UpdateStudentsDetails = async (req, res) => {
       age : req.body.age,
       contactno : req.body.contactno,
 
-      //update the image URL
+      //*update the image URL
       image: fileURL,
     }
   
     // update
-    // form bata(req.body) bata aako kura haru(fullname, address, grade, etc) lai update gardey where id ko value chae tyo parameter bata aako id ko value xa 
+    //* form bata(req.body) bata aako kura haru(fullname, address, grade, etc) lai update gardey where id ko value chae tyo parameter bata aako id ko value xa 
     await students_details.update(updateFields,{
       where: {
         id: id,
       },
     })
     
-    /*explaining code no. 117 to 132
-    how to delete the previous image after new update
+    /*
+    explaining code no. 117 to 132
+    * how to delete the previous image after new update
     */
     const oldImagePath = oldData[0].image
     // console.log(oldImagePath)  // http://localhost:3000/image.png
 
     const lengthofunwanted = "http://localhost:3000".length
-    // console.log(lengthofunwanted)
 
     const fileNameInUploadsFolder = oldImagePath.slice(lengthofunwanted)
     console.log(fileNameInUploadsFolder)
