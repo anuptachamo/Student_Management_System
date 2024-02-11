@@ -1,4 +1,7 @@
 /*users is an table name which are on database [studentRecordsCms] (index.js ko line no. 34)*/
+// Debugging code
+console.log('Debugging authController.js');
+
 const jwt = require("jsonwebtoken");
 const { users } = require("../../Model");
 const bcrypt = require("bcryptjs"); //password hashing lagii use garxa
@@ -207,7 +210,7 @@ exports.renderChangePassword = (req, res) => {
   const email = req.query.email
   const otp = req.query.otp
   if( !email || !otp){
-    return res.send("Email and otp should provided in the query")
+    return res.send("Email and otp should be provided in the query")
   }
 
   const error = req.flash("error")
@@ -240,8 +243,8 @@ exports.handlePasswordChange = async (req, res)=>{
       res.redirect("/changePassword")
     }
     if (userData.length == 0){
-      // return res.send("Dont try to do this")
-      req.flash("error", "Dont try to do this")
+      // return res.send("Don't try to do this")
+      req.flash("error", "Don't try to do this")
       res.redirect("/changePassword")
     }
     const currentTime = Date.now()

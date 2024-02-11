@@ -17,6 +17,7 @@ require("./Model/index");
 
 //* Configure the session middleware.
 app.use(session({
+    
     secret : "testing",  //* A secret key used to sign session cookies. It should be a long, random string for security.
     resave : false,      //* If true, forces the session to be saved back to the session store, even if it wasn't modified during the request. Setting it to false is more efficient.
     saveUninitialized : false  //* If true, a session will be stored in the session store, even if it wasn't initialized (e.g., no data was added to it). Setting it to false is more efficient and generally recommended.
